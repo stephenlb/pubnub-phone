@@ -10,7 +10,7 @@ body, div, span, img {
    // CALL
    // -------------------------------------------------------------------- */
 
-#call {
+#pubnub-call {
     overflow: hidden;
     position: relative;
     background: #696869;
@@ -23,7 +23,7 @@ body, div, span, img {
     box-shadow: inset 0px 0px 300px 40px rgba(0,0,0,0.8);
 }
 
-#call-header {
+.pubnub-call-header {
     border-top: 1px solid rgba(255,255,255,0.8);
     border-bottom: 1px solid rgba(0,0,0,0.8);
 
@@ -39,7 +39,7 @@ body, div, span, img {
     background: linear-gradient(to bottom, rgba(174,188,191,0.8) 0%,rgba(110,119,116,0.8) 50%,rgba(10,14,10,0.8) 51%,rgba(10,8,9,0.8) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#aebcbf', endColorstr='#0a0809',GradientType=0 );
 }
-#call-header-contact {
+.pubnub-call-header-contact {
     font-weight: 400;
     font-size: 40px;
     line-height: 57px;
@@ -48,7 +48,7 @@ body, div, span, img {
     color: #fff;
     text-shadow: 0 -1px 1px rgba(0,0,0,0.6);
 }
-#call-header-detail {
+.pubnub-call-header-detail {
     font-weight: 400;
     font-size: 20px;
     line-height: 15px;
@@ -58,7 +58,7 @@ body, div, span, img {
     text-shadow: 0 -1px 1px rgba(0,0,0,0.6);
 }
 
-#call-button-area {
+.pubnub-call-button-area {
     position: absolute;
     bottom: 0px;
     height: 100px;
@@ -179,13 +179,13 @@ body, div, span, img {
    // DIALPAD
    // -------------------------------------------------------------------- */
 
-#dialpad {
+#pubnub-dialpad {
     position: relative;
     background: #696869;
     width: 320px;
     height: 460px;
 }
-#dialpad-footer {
+#pubnub-dialpad-footer {
     height: 50px;
     line-height: 50px;
     background: #000;
@@ -193,7 +193,7 @@ body, div, span, img {
     font-weight: 300;
     text-align: center;
 }
-#dialpad-header {
+#pubnub-dialpad-header {
     overflow: hidden;
 
     color: #fdffff;

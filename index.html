@@ -23,21 +23,96 @@
 </head>
 <body>
 
-    <!-- DIALPAD -->
-    <div id=dialpad>
-        <div id=dialpad-header>1 (800) 555-5555</div>
-<div class=digit-cell><div class=digit>1</div><div class=letters>&nbsp;</div></div><div class="digit-cell digit-cell-mid"><div class=digit>2</div><div class=letters>ABC</div></div><div class=digit-cell><div class=digit>3</div><div class=letters>DEF</div></div><div class=digit-cell><div class=digit>4</div><div class=letters>GHI</div></div><div class="digit-cell digit-cell-mid"><div class=digit>5</div><div class=letters>JKL</div></div><div class=digit-cell><div class=digit>6</div><div class=letters>MNO</div></div><div class=digit-cell><div class=digit>7</div><div class=letters>PQRS</div></div><div class="digit-cell digit-cell-mid"><div class=digit>8</div><div class=letters>TUV</div></div><div class=digit-cell><div class=digit>9</div><div class=letters>WXYZ</div></div><div class=digit-cell><div class=digit>&#8727;</div><div class=letters>&nbsp;</div></div><div class="digit-cell digit-cell-mid"><div class=digit>0</div><div class=letters>+</div></div><div class=digit-cell><div class=digit>#</div><div class=letters>&nbsp;</div></div><div class="digit-cell digit-cell-bottom"><div class=letters>&nbsp;</div><div class=digit>&nbsp;</div><div class=letters>&nbsp;</div></div><div class="digit-cell digit-cell-mid digit-cell-bottom digit-cell-call"><div class=letters>&nbsp;</div><div class="digit digit-call"><div class=phone-icon-answer>&nbsp;</div><div class=call-button-text-out>Call</div></div><div class=letters>&nbsp;</div></div><div class="digit-cell digit-cell-bottom"><div class=digit-cell-delete>&nbsp;</div></div>
-        <div class=clear></div>
-        <div id=dialpad-footer>My Number: 415-830-6711</div>
-    </div>
 
-    <!-- CALL INBOUND/OUTBOUND -->
-    <div id=call>
-        <div id=call-header>
-            <div id=call-header-contact>Alex Donn</div>
-            <div id=call-header-detail>work</div>
+    <!-- BEGIN PUBNUB PHONE -->
+    <div id=pubnub-phone action=default>
+        <!-- DIALPAD -->
+        <div id=pubnub-dialpad>
+            <div id=pubnub-dialpad-header></div>
+            <div class=digit-cell action=dialpad-press value=1>
+                <div class=digit>1</div>
+                <div class=letters>&nbsp;</div>
+            </div>
+            <div class="digit-cell digit-cell-mid"
+            action=dialpad-press value=2>
+                <div class=digit>2</div>
+                <div class=letters>ABC</div>
+            </div>
+            <div class=digit-cell action=dialpad-press value=3>
+                <div class=digit>3</div>
+                <div class=letters>DEF</div>
+            </div>
+            <div class=digit-cell action=dialpad-press value=4>
+                <div class=digit>4</div>
+                <div class=letters>GHI</div>
+            </div>
+            <div class="digit-cell digit-cell-mid"
+            action=dialpad-press value=5>
+                <div class=digit>5</div>
+                <div class=letters>JKL</div>
+            </div>
+            <div class=digit-cell action=dialpad-press value=6>
+                <div class=digit>6</div>
+                <div class=letters>MNO</div>
+            </div>
+            <div class=digit-cell action=dialpad-press value=7>
+                <div class=digit>7</div>
+                <div class=letters>PQRS</div>
+            </div>
+            <div class="digit-cell digit-cell-mid"
+            action=dialpad-press value=8>
+                <div class=digit>8</div>
+                <div class=letters>TUV</div>
+            </div>
+            <div class=digit-cell action=dialpad-press value=9>
+                <div class=digit>9</div>
+                <div class=letters>WXYZ</div>
+            </div>
+            <div class=digit-cell action=dialpad-press value=Star>
+                <div class=digit>&#8727;</div>
+                <div class=letters>&nbsp;</div>
+            </div>
+            <div class="digit-cell digit-cell-mid"
+            action=dialpad-press value=0>
+                <div class=digit>0</div>
+                <div class=letters>+</div>
+            </div>
+            <div class=digit-cell action=dialpad-press value=Pound>
+                <div class=digit>#</div>
+                <div class=letters>&nbsp;</div>
+            </div>
+            <div class="digit-cell digit-cell-bottom">
+                <div class=letters>&nbsp;</div>
+                <div class=digit>&nbsp;</div>
+                <div class=letters>&nbsp;</div>
+            </div>
+            <div class="digit-cell digit-cell-mid digit-cell-bottom digit-cell-call" action=dialpad-call>
+                <div class=letters>&nbsp;</div>
+                <div class="digit digit-call">
+                    <div class=phone-icon-answer>&nbsp;</div>
+                    <div class=call-button-text-out>Call</div>
+                </div>
+                <div class=letters>&nbsp;</div>
+            </div>
+            <div class="digit-cell digit-cell-bottom" action=dialpad-delete>
+                <div class=digit-cell-delete>&nbsp;</div>
+            </div>
+            <div class=clear></div>
+            <div id=pubnub-dialpad-footer>Your Number: 415-830-6711</div>
         </div>
-        <div id=call-button-area>
+
+        <!-- CALL INBOUND/OUTBOUND -->
+        <div id=pubnub-call></div>
+
+        <!-- TEMPLATES -->
+        <script id=pubnub-call-template type=template>
+            <div class=pubnub-call-header>
+                <div class=pubnub-call-header-contact>{contact}</div>
+                <div class=pubnub-call-header-detail>{detail}</div>
+            </div>
+            <div class=pubnub-call-button-area>{buttons}</div>
+        </script>
+        <script id=pubnub-in-call-template type=template>
             <div class="call-button decline" action=decline>
                 <div class=phone-icon-decline></div>
                 <div class=call-button-text>Decline</div>
@@ -46,20 +121,22 @@
                 <div class=phone-icon-answer></div>
                 <div class=call-button-text>Answer</div>
             </div>
-            <!--
-            <div class="call-button decline end" action=decline>
+        </script>
+        <script id=pubnub-out-call-template type=template>
+            <div class="call-button decline end" action=end>
                 <div class="phone-icon-decline end-icon"></div>
                 <div class="call-button-text end-text">End Call</div>
             </div>
-            -->
-        </div>
-    </div>
+        </script>
 
-    <!-- TEMPLATES -->
-    <script id=call-template type=template></script>
+    </div>
+    <!-- END PUBNUB PHONE -->
+
 
 <script>scrollTo(0,1);</script>
 <script src=http://cdn.pubnub.com/pubnub-3.1.min.js></script>
-<script src=app.js></script>
+<script src=js/animate.js></script>
+<script src=js/sound.js></script>
+<script src=js/phone.js></script>
 </body>
 </html>
