@@ -9,15 +9,33 @@ body, div, span, img {
 /* // -----------------------------------------------------------------------
    // CALL
    // -------------------------------------------------------------------- */
-
-#pubnub-call {
-    overflow: hidden;
+#pubnub-background {
+    z-index: 10;
+    background: #000;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 320px;
+    height: 460px;
+}
+.pubnub-screen {
     position: relative;
+    width: 320px;
+    height: 460px;
+}
+#pubnub-call {
+    z-index: 500;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 320px;
+    height: 460px;
+
     background: #696869;
     background: #696869 url(tmp/answer-decline-phone-call.png) 0 -20px;
     background: #696869 url(img/mobile-bg.jpg);
-    width: 320px;
-    height: 460px;
 
     -webkit-box-shadow: inset 0px 0px 300px 40px rgba(0,0,0,0.8);
     box-shadow: inset 0px 0px 300px 40px rgba(0,0,0,0.8);
@@ -41,7 +59,7 @@ body, div, span, img {
 }
 .pubnub-call-header-contact {
     font-weight: 400;
-    font-size: 40px;
+    font-size: 36px;
     line-height: 57px;
     height: 60px;
     text-align: center;
@@ -180,7 +198,11 @@ body, div, span, img {
    // -------------------------------------------------------------------- */
 
 #pubnub-dialpad {
-    position: relative;
+    z-index: 1000;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
     background: #696869;
     width: 320px;
     height: 460px;
@@ -319,6 +341,10 @@ body, div, span, img {
    // UTILITYS
    // -------------------------------------------------------------------- */
 
-.clear {
+.pubnub-clear {
     clear: both;
 }
+.pubnub-relative {
+    position: relative;
+}
+

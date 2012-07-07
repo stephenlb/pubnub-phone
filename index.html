@@ -26,6 +26,10 @@
 
     <!-- BEGIN PUBNUB PHONE -->
     <div id=pubnub-phone action=default>
+
+        <!-- BACKGROUND -->
+        <div id=pubnub-background></div>
+
         <!-- DIALPAD -->
         <div id=pubnub-dialpad>
             <div id=pubnub-dialpad-header></div>
@@ -97,8 +101,8 @@
             <div class="digit-cell digit-cell-bottom" action=dialpad-delete>
                 <div class=digit-cell-delete>&nbsp;</div>
             </div>
-            <div class=clear></div>
-            <div id=pubnub-dialpad-footer>Your Number: 415-830-6711</div>
+            <div class=pubnub-clear></div>
+            <div id=pubnub-dialpad-footer>Your Number: 6711</div>
         </div>
 
         <!-- CALL INBOUND/OUTBOUND -->
@@ -106,14 +110,16 @@
 
         <!-- TEMPLATES -->
         <script id=pubnub-call-template type=template>
-            <div class=pubnub-call-header>
-                <div class=pubnub-call-header-contact>{contact}</div>
-                <div class=pubnub-call-header-detail>{detail}</div>
+            <div class=pubnub-screen>
+                <div class=pubnub-call-header>
+                    <div class=pubnub-call-header-contact>{contact}</div>
+                    <div class=pubnub-call-header-detail>{detail}</div>
+                </div>
+                <div class=pubnub-call-button-area>{buttons}</div>
             </div>
-            <div class=pubnub-call-button-area>{buttons}</div>
         </script>
         <script id=pubnub-in-call-template type=template>
-            <div class="call-button decline" action=decline>
+            <div class="call-button decline" action=end>
                 <div class=phone-icon-decline></div>
                 <div class=call-button-text>Decline</div>
             </div>
@@ -126,6 +132,16 @@
             <div class="call-button decline end" action=end>
                 <div class="phone-icon-decline end-icon"></div>
                 <div class="call-button-text end-text">End Call</div>
+            </div>
+        </script>
+        <script id=pubnub-fail-call-template type=template>
+            <div class="call-button answer" action=redial>
+                <div class=phone-icon-answer></div>
+                <div class=call-button-text>Redail</div>
+            </div>
+            <div class="call-button decline" action=end>
+                <div class=phone-icon-decline></div>
+                <div class=call-button-text>Cancel</div>
             </div>
         </script>
 

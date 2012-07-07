@@ -39,6 +39,7 @@ p.bind( 'mousedown,touchstart', pubnub_phone, function(e) {
 p.bind( 'mouseup,touchend', pubnub_phone, function(e) {
     var details = find_action(e.target || e.srcElement);
     p.events.fire( details.action + '-up', details );
+//console.log( details.action + '-up' );
     return false;
 } );
 
@@ -50,18 +51,28 @@ var call_tpl       = p.$('pubnub-call-template').innerHTML
 ,   pubnub_dailpad = p.$('pubnub-dialpad');
 
 function show_call_status(args) {
-    var args = args || {};
+    if (!args) return;
+
     args.buttons = p.$('pubnub-'+args.way+'-call-template').innerHTML
     pubnub_call.innerHTML = p.supplant( call_tpl, args );
-    p.css( pubnub_call, { display : 'block' } );
-    /*
-    p.css( pubnub_dailpad, { display : 'none' } );
-    */
+    hide_screen(pubnub_dailpad);
+    show_screen(pubnub_call);
+}
 
-    animate( pubnub_dailpad, [ { d : 1, ry : 90 } ], function() {
-        p.css( pubnub_dailpad, { display : 'none' } );
+// HIDE VIA ANIMATION
+function hide_screen(screen) {
+    animate( screen, [
+        { d : 0.4, s : 0.7, opacity : 0, 'z-index' : 100 }
+    ], function() {
     } );
-    animate( pubnub_call, [ { d : 1, ry : 360 } ], function() {
+}
+
+// SHOW VIA ANIMATION
+function show_screen(screen) {
+    animate( screen, [
+        { d : 0.0001, s : 0.5, opacity : 0.7, 'z-index' : 10000 },
+        { d : 0.4,    s : 1,   opacity : 1 }
+    ], function() {
     } );
 }
 
@@ -87,9 +98,17 @@ p.events.bind( 'dialpad-call-down', function(data) {
     sounds.play('tone/ring-out.ogg');
     show_call_status({
         way     : 'out',
-        contact : format_phone_number(outbound_number.value),
+        contact : format_phone_number(outbound_number.value) || ' ',
         detail  : 'calling...'
     });
+} );
+// -----------------------------------------------------------------------
+// END BUTTON
+// -----------------------------------------------------------------------
+p.events.bind( 'end-up', function(data) {
+    sounds.stopAll();
+    hide_screen(pubnub_call);
+    show_screen(pubnub_dailpad);
 } );
 
 // -----------------------------------------------------------------------
@@ -100,6 +119,7 @@ function remove_digit() {
     outbound_number.innerHTML = format_phone_number(
         outbound_number.value
     );
+    if (!outbound_number.value) clearInterval(outbound_number.interval);
 }
 
 p.events.bind( 'dialpad-delete-down', function(data) {
