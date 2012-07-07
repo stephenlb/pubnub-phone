@@ -1,4 +1,4 @@
-body, div {
+body, div, span, img {
     font-family: "Open Sans";
     font-weight: 400;
     font-size: 20px;
@@ -11,6 +11,7 @@ body, div {
    // -------------------------------------------------------------------- */
 
 #call {
+    overflow: hidden;
     position: relative;
     background: #696869;
     background: #696869 url(tmp/answer-decline-phone-call.png) 0 -20px;
@@ -91,18 +92,22 @@ body, div {
     border: 3px solid rgba(0,0,0,0.8);
 }
 
-.call-button-text {
+.call-button-text,
+.call-button-text-out {
     position: absolute;
     top: 0px;
     left: 48px;
 
     cursor: pointer;
-    font-size: 16px;
+    font-size: 17px;
     height: 40px;
     line-height: 40px;
     font-weight: 700;
     color: #fff;
     text-shadow: 0 -1px 1px rgba(0,0,0,0.5);
+}
+.call-button-text-out {
+    font-size: 19px;
 }
 
 .phone-icon-answer,
@@ -119,11 +124,19 @@ body, div {
 }
 
 .answer:hover {
-    background: #1d2;
+    background: #8ae234;
+    border: 3px solid rgba(0,100,0,0.8);
+}
+.answer:active {
+    background: #4e9a06;
     border: 3px solid rgba(0,100,0,0.8);
 }
 .decline:hover {
-    background: #f11;
+    background: #ef2929;
+    border: 3px solid rgba(100,0,0,0.8);
+}
+.decline:active {
+    background: #a40000;
     border: 3px solid rgba(100,0,0,0.8);
 }
 
@@ -169,13 +182,35 @@ body, div {
 #dialpad {
     position: relative;
     background: #696869;
-    background: #696869 url(tmp/dialpad.jpg) 0 -20px;
     width: 320px;
     height: 460px;
 }
+#dialpad-footer {
+    height: 50px;
+    line-height: 50px;
+    background: #000;
+    color: #fff;
+    font-weight: 300;
+    text-align: center;
+}
 #dialpad-header {
-    /*header */
+    overflow: hidden;
+
+    color: #fdffff;
+    font-size: 36px;
+    font-weight: 700;
+    text-align: center;
+    line-height: 74px;
     height: 74px;
+
+    background: rgb(71,99,133);
+    background: -moz-linear-gradient(top, rgba(71,99,133,1) 0%, rgba(22,48,83,1) 50%, rgba(6,35,71,1) 51%, rgba(0,32,68,1) 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(71,99,133,1)), color-stop(50%,rgba(22,48,83,1)), color-stop(51%,rgba(6,35,71,1)), color-stop(100%,rgba(0,32,68,1)));
+    background: -webkit-linear-gradient(top, rgba(71,99,133,1) 0%,rgba(22,48,83,1) 50%,rgba(6,35,71,1) 51%,rgba(0,32,68,1) 100%);
+    background: -o-linear-gradient(top, rgba(71,99,133,1) 0%,rgba(22,48,83,1) 50%,rgba(6,35,71,1) 51%,rgba(0,32,68,1) 100%);
+    background: -ms-linear-gradient(top, rgba(71,99,133,1) 0%,rgba(22,48,83,1) 50%,rgba(6,35,71,1) 51%,rgba(0,32,68,1) 100%);
+    background: linear-gradient(to bottom, rgba(71,99,133,1) 0%,rgba(22,48,83,1) 50%,rgba(6,35,71,1) 51%,rgba(0,32,68,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#476385', endColorstr='#002044',GradientType=0 );
 }
 .digit-cell:hover {
     background: rgb(0,183,234);
@@ -187,14 +222,17 @@ body, div {
     background: linear-gradient(to bottom, rgba(0,183,234,1) 0%,rgba(0,158,195,1) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00b7ea', endColorstr='#009ec3',GradientType=0 );
 }
+.digit-cell:active {
+    background: #204a87;
+}
 .digit-cell,
 .digit-cell-end,
 .digit-cell-bottom {
     overflow: hidden;
     cursor: pointer;
-    display: inline-block;
+    display: block;
+    float: left;
     
-    white-space: nowrap;
     width: 104px;
     height: 67px;
 
@@ -216,10 +254,27 @@ body, div {
     width: 106px;
 }
 .digit-cell-bottom {
-    height: 40px;
+    height: 60px;
+    background: rgb(12,43,70);
+    background: -moz-linear-gradient(top, rgba(12,43,70,1) 0%, rgba(0,22,48,1) 50%, rgba(0,16,45,1) 51%, rgba(0,16,46,1) 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(12,43,70,1)), color-stop(50%,rgba(0,22,48,1)), color-stop(51%,rgba(0,16,45,1)), color-stop(100%,rgba(0,16,46,1)));
+    background: -webkit-linear-gradient(top, rgba(12,43,70,1) 0%,rgba(0,22,48,1) 50%,rgba(0,16,45,1) 51%,rgba(0,16,46,1) 100%);
+    background: -o-linear-gradient(top, rgba(12,43,70,1) 0%,rgba(0,22,48,1) 50%,rgba(0,16,45,1) 51%,rgba(0,16,46,1) 100%);
+    background: -ms-linear-gradient(top, rgba(12,43,70,1) 0%,rgba(0,22,48,1) 50%,rgba(0,16,45,1) 51%,rgba(0,16,46,1) 100%);
+    background: linear-gradient(to bottom, rgba(12,43,70,1) 0%,rgba(0,22,48,1) 50%,rgba(0,16,45,1) 51%,rgba(0,16,46,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0c2b46', endColorstr='#00102e',GradientType=0 );
 }
-.digit,
-.digit-call {
+.digit-cell-delete {
+    background: transparent url(img/delete-icon.png) 0px 0px no-repeat;
+    height: 60px;
+}
+.digit-cell-delete:hover {
+    background: #ef2929 url(img/delete-icon.png) 0px 0px no-repeat;
+}
+.digit-cell-delete:active {
+    background: #a40000 url(img/delete-icon.png) 0px 0px no-repeat;
+}
+.digit {
     position: relative;
     color: #fdffff;
     text-shadow: 0 -1px 2px rgba(0,0,0,0.9);
@@ -229,12 +284,7 @@ body, div {
     line-height: 46px;
     text-align: center;
 }
-.digit-call {
-    height: 40px;
-    font-weight: 600;
-    font-size: 34px;
-    line-height: 40px;
-
+.digit-cell-call {
     background: rgb(157,213,58);
     background: -moz-linear-gradient(top, rgba(157,213,58,1) 0%, rgba(161,213,79,1) 50%, rgba(128,194,23,1) 51%, rgba(124,188,10,1) 100%);
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(157,213,58,1)), color-stop(50%,rgba(161,213,79,1)), color-stop(51%,rgba(128,194,23,1)), color-stop(100%,rgba(124,188,10,1)));
@@ -243,16 +293,32 @@ body, div {
     background: -ms-linear-gradient(top, rgba(157,213,58,1) 0%,rgba(161,213,79,1) 50%,rgba(128,194,23,1) 51%,rgba(124,188,10,1) 100%);
     background: linear-gradient(to bottom, rgba(157,213,58,1) 0%,rgba(161,213,79,1) 50%,rgba(128,194,23,1) 51%,rgba(124,188,10,1) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#9dd53a', endColorstr='#7cbc0a',GradientType=0 );
-
 }
+
+.digit-cell-call:hover {
+    background: #8ae234;
+    border: 1px solid rgba(0,100,0,0.8);
+}
+.digit-cell-call:active {
+    background: #4e9a06;
+}
+
 .letters {
     color: #80878f;
     font-weight: 700;
     font-size: 14px;
     height: 10px;
-    line-height: 10px;
+    line-height: 20px;
     text-align: center;
 }
 .digit-cell:hover .letters {
     color: #fff;
+}
+
+/* // -----------------------------------------------------------------------
+   // UTILITYS
+   // -------------------------------------------------------------------- */
+
+.clear {
+    clear: both;
 }
