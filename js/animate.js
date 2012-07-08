@@ -1,3 +1,4 @@
+/*             Hey, let's be friends! http://twitter.com/pubnub              */
 /* =-=====================================================================-= */
 /* =-=====================================================================-= */
 /* =-==========================     ANIMATE     ==========================-= */
@@ -67,14 +68,14 @@ var animate = (function(){
         trans = tranbuff.join(' ') || '';
 
         stylebuff.push(
-            '-o-transition:all ' +      duration,
-            '-moz-transition:all ' +    duration,
+            '-o-transition:all '      + duration,
+            '-moz-transition:all '    + duration,
             '-webkit-transition:all ' + duration,
-            'transition:all ' +         duration,
-            '-o-transform:' +           trans,
-            '-moz-transform:' +         trans,
-            '-webkit-transform:' +      trans,
-            'transform:' +              trans
+            'transition:all '         + duration,
+            '-o-transform:'           + trans,
+            '-moz-transform:'         + trans,
+            '-webkit-transform:'      + trans,
+            'transform:'              + trans
         );
 
         // CSS2

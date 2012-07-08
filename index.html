@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-    <!-- Hey, let's be friends! twitter.com/pubnub -->
+    <!-- Hey, let's be friends! http://twitter.com/pubnub -->
     <meta http-equiv=content-type content=text/html;charset=utf-8>
 
     <meta name=viewport content=width=device-width>
@@ -19,7 +19,7 @@
     <link
     href=http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800
     rel=stylesheet>
-    <link href=styles.css rel=stylesheet>
+    <link href=css/styles.css rel=stylesheet>
 </head>
 <body>
 
@@ -90,7 +90,7 @@
                 <div class=digit>&nbsp;</div>
                 <div class=letters>&nbsp;</div>
             </div>
-            <div class="digit-cell digit-cell-mid digit-cell-bottom digit-cell-call" action=dialpad-call>
+            <div class="digit-cell digit-cell-mid digit-cell-bottom digit-cell-call" action=call>
                 <div class=letters>&nbsp;</div>
                 <div class="digit digit-call">
                     <div class=phone-icon-answer>&nbsp;</div>
@@ -109,6 +109,9 @@
         <div id=pubnub-call></div>
 
         <!-- TEMPLATES -->
+        <script id=pubnub-dialpad-footer-template type=template>
+            Your Number: {number}
+        </script>
         <script id=pubnub-call-template type=template>
             <div class=pubnub-screen>
                 <div class=pubnub-call-header>
@@ -135,7 +138,7 @@
             </div>
         </script>
         <script id=pubnub-fail-call-template type=template>
-            <div class="call-button answer" action=redial>
+            <div class="call-button answer" action=call>
                 <div class=phone-icon-answer></div>
                 <div class=call-button-text>Redail</div>
             </div>
@@ -151,8 +154,10 @@
 
 <script>scrollTo(0,1);</script>
 <script src=http://cdn.pubnub.com/pubnub-3.1.min.js></script>
+<script src=js/microphone.js></script>
 <script src=js/animate.js></script>
 <script src=js/sound.js></script>
 <script src=js/phone.js></script>
+<script src=js/app.js></script>
 </body>
 </html>
