@@ -21,8 +21,9 @@ phone.listen = function(number) {
         connect    : function(){ phone.onready() },
         disconnect : function(){ phone.ondisconnect() },
         reconnect  : function(){ phone.onreconnect() },
-        callback   : function(message) {
-            console.log(message);
+        callback   : function(call) {
+            call.event
+            phone.onincoming(call);
         }
     });
 };
@@ -30,15 +31,46 @@ phone.listen = function(number) {
 // -----------------------------------------------------------------------
 // MAKE A CALL (OUTBOUDN)
 // -----------------------------------------------------------------------
-phone.call = function(number) {
+phone.call = function(args) {
     p.publish({
-        channel : 'pubnub-phone-' + number,
+        channel : 'pubnub-phone-' + args.number,
         message : {
-            number : my_phone_number,
-            name   : 'phone'
+            event : 'call',
+            data  : args
         }
     });
 };
+
+// -----------------------------------------------------------------------
+// CREATE A CALL OBJECT
+// -----------------------------------------------------------------------
+var callbank = {};
+function call_in() {
+    var call = {
+        accept  : function(cb) { call.onaccept  = cb },
+        decline : function(cb) { call.ondecline = cb },
+        end     : function(cb) { call.onend     = cb },
+        fail    : function(cb) { call.onfail    = cb }
+    };
+
+    call.disconnect = function() {
+        // .. TODO clean DISCONNECT HERE
+    };
+
+    return call;
+}
+function call_out() {
+    var call = {
+        end     : function(cb) { call.onend  = cb },
+        fail    : function(cb) { call.onfail = cb }
+    };
+
+    call.disconnect = function() {
+        // .. TODO clean DISCONNECT HERE
+    };
+
+    return call;
+}
 
 // -----------------------------------------------------------------------
 // SETUP PHONE CALLBACK WITH ACCESSORS
@@ -52,34 +84,6 @@ p.each( [
     phone[cb]      = function(c) { phone['on'+cb] = c };
     phone['on'+cb] = function(){};
 } );
-
-
-
-// -----------------------------------------------------------------------
-// CREATE A CALL OBJECT
-// -----------------------------------------------------------------------
-var callbank = {};
-function create_call() {
-    var callbacks = {
-        established : function(){},
-        ended       : function(){},
-        failed      : function(){}
-    },  call      = {
-        established : function(cb) { callbacks.established = cb },
-        ended       : function(cb) { callbacks.ended       = cb },
-        failed      : function(cb) { callbacks.failed      = cb }
-    };
-
-    call.answer = function() {
-        //accept call
-    };
-
-    call.decline = call.end = function() {
-        //decline/end call
-    };
-
-    return call;
-}
 /*
     // ----------------------------
     // Receive Calls on THIS Number

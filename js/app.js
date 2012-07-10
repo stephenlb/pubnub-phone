@@ -20,6 +20,23 @@ phone.ready(function(){
     console.log('ready to make and receive calls!');
 });
 
+phone.incoming(function(call){
+    sounds.play('tone/ring-in');
+    show_call_status({
+        way     : 'in',
+        contact : format_phone_number(call.number) || ' ',
+        detail  : call.name
+    });
+
+    call.accept(function(call){
+        
+    });
+
+    call.decline(function(call){
+
+    });
+});
+
 // -----------------------------------------------------------------------
 // DAILPAD FOOTER
 // -----------------------------------------------------------------------
@@ -110,7 +127,7 @@ outbound_number.value = '';
 
 p.events.bind( 'dialpad-press-up', sounds.stopAll );
 p.events.bind( 'dialpad-press-down', function(data) {
-    sounds.play(p.supplant( 'tone/Dtmf{value}.ogg', data ));
+    sounds.play(p.supplant( 'tone/Dtmf{value}', data ));
     if (+data.value || data.value === '0')
         outbound_number.innerHTML = format_phone_number(
             outbound_number.value += data.value
@@ -121,7 +138,11 @@ p.events.bind( 'dialpad-press-down', function(data) {
 // DIALPAD CALL BUTTON
 // -----------------------------------------------------------------------
 p.events.bind( 'call-down', function(data) {
-    sounds.play('tone/ring-out.ogg');
+    phone.call({
+        name   : 'phone',
+        number : outbound_number.value
+    });
+    sounds.play('tone/ring-out');
     show_call_status({
         way     : 'out',
         contact : format_phone_number(outbound_number.value) || ' ',
@@ -178,6 +199,5 @@ function format_phone_number(number) {
         num.slice( -12, -10 ) || ' '
     ] );
 }
-
 
 })();

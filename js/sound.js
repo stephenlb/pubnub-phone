@@ -13,7 +13,8 @@ var sounds = (function(){
     }
 
     function reset(audio) {
-        try {audio.currentTime = 0} catch (e) {}
+        try       { audio.currentTime = 0.0 }
+        catch (e) { }
     }
 
     return {
@@ -24,17 +25,21 @@ var sounds = (function(){
                 p.css( audio, { display : 'none' } );
 
                 p.attr( audio, 'prelaod', 'auto' );
+                p.attr( audio, 'loop', 'true' );
                 p.attr( audio, 'autoplay', 'true' );
-                p.attr( audio, 'src', sound );
 
-                audio.src = sound;
+                audio.innerHTML = p.supplant(
+                    "<source src={file}.ogg><source src={file}.mp3>",
+                    { file : sound }
+                );
 
                 p.search('body')[0].appendChild(audio);
 
                 return audio;
             })();
 
-            reset(audio);
+            stop(audio);
+            audio.load();
             audio.play();
 
             // Play a Set Portion of Audio
