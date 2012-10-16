@@ -1,150 +1,145 @@
+
 <!doctype html>
 <html>
 <head>
-    <!-- Hey, let's be friends! http://twitter.com/pubnub -->
-    <meta http-equiv=content-type content=text/html;charset=utf-8>
+    <!-- Hey, let's be friends! http://twitter.com/pubnub
+         Edits by JohnMHarrisJr, http://twitter.com/johnmharrisjr -->
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta name="viewport" content="user-scalable=no">
 
-    <meta name=viewport content=width=device-width>
-    <meta name=viewport content=initial-scale=1.0>
-    <meta name=viewport content=user-scalable=no>
+    <meta name="apple-mobile-web-app-capable" content="yes">  
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
-    <meta name=apple-mobile-web-app-capable content=yes>  
-    <meta name=apple-mobile-web-app-status-bar-style content=black>
-
-    <link rel=apple-touch-icon href=icon.png>
-    <link rel=apple-touch-startup-image href=startup.png>
+    <link rel="apple-touch-icon" href="icon.png">
+    <link rel="apple-touch-startup-image" href="startup.png">
 
     <title>PubNub Phone</title>
 
-    <link
-    href=http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800
-    rel=stylesheet>
-    <link href=css/styles.css rel=stylesheet>
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
 </head>
 <body>
 
 
     <!-- BEGIN PUBNUB PHONE -->
-    <div id=pubnub-phone action=default>
+    <div id="pubnub-phone" action="default">
 
         <!-- BACKGROUND -->
-        <div id=pubnub-background></div>
+        <div id="pubnub-background"></div>
 
         <!-- DIALPAD -->
-        <div id=pubnub-dialpad>
-            <div id=pubnub-dialpad-header></div>
-            <div class=digit-cell action=dialpad-press value=1>
-                <div class=digit>1</div>
-                <div class=letters>&nbsp;</div>
+        <div id="pubnub-dialpad">
+            <div id="pubnub-dialpad-header"></div>
+            <div class="digit-cell" action="dialpad-press" value="1">
+                <div class="digit">1</div>
+                <div class="letters">&nbsp;</div>
             </div>
-            <div class="digit-cell digit-cell-mid"
-            action=dialpad-press value=2>
-                <div class=digit>2</div>
-                <div class=letters>ABC</div>
+            <div class="digit-cell digit-cell-mid" action="dialpad-press" value="2">
+                <div class="digit">2</div>
+                <div class="letters">ABC</div>
             </div>
-            <div class=digit-cell action=dialpad-press value=3>
+            <div class="digit-cell" action="dialpad-press" value="3">
                 <div class=digit>3</div>
                 <div class=letters>DEF</div>
             </div>
-            <div class=digit-cell action=dialpad-press value=4>
-                <div class=digit>4</div>
-                <div class=letters>GHI</div>
+            <div class="digit-cell" action="dialpad-press" value="4">
+                <div class="digit">4</div>
+                <div class="letters">GHI</div>
             </div>
-            <div class="digit-cell digit-cell-mid"
-            action=dialpad-press value=5>
-                <div class=digit>5</div>
-                <div class=letters>JKL</div>
+            <div class="digit-cell digit-cell-mid" action="dialpad-press" value="5">
+                <div class="digit">5</div>
+                <div class="letters">JKL</div>
             </div>
-            <div class=digit-cell action=dialpad-press value=6>
-                <div class=digit>6</div>
-                <div class=letters>MNO</div>
+            <div class="digit-cell" action="dialpad-press" value="6">
+                <div class="digit">6</div>
+                <div class="letters">MNO</div>
             </div>
-            <div class=digit-cell action=dialpad-press value=7>
-                <div class=digit>7</div>
-                <div class=letters>PQRS</div>
+            <div class="digit-cell" action="dialpad-press" value="7">
+                <div class="digit">7</div>
+                <div class="letters">PQRS</div>
             </div>
-            <div class="digit-cell digit-cell-mid"
-            action=dialpad-press value=8>
+            <div class="digit-cell digit-cell-mid"action="dialpad-press" value="8">
                 <div class=digit>8</div>
                 <div class=letters>TUV</div>
             </div>
-            <div class=digit-cell action=dialpad-press value=9>
+            <div class="digit-cell" action="dialpad-press" value="9">
                 <div class=digit>9</div>
                 <div class=letters>WXYZ</div>
             </div>
-            <div class=digit-cell action=dialpad-press value=Star>
-                <div class=digit>&#8727;</div>
-                <div class=letters>&nbsp;</div>
+            <div class="digit-cell" action="dialpad-press" value="Star">
+                <div class="digit">&#8727;</div>
+                <div class="letters">&nbsp;</div>
             </div>
-            <div class="digit-cell digit-cell-mid"
-            action=dialpad-press value=0>
-                <div class=digit>0</div>
-                <div class=letters>+</div>
+            <div class="digit-cell digit-cell-mid" action="dialpad-press" value="0">
+                <div class="digit">0</div>
+                <div class="letters">+</div>
             </div>
-            <div class=digit-cell action=dialpad-press value=Pound>
+            <div class="digit-cell" action="dialpad-press" value="Pound">
                 <div class=digit>#</div>
                 <div class=letters>&nbsp;</div>
             </div>
             <div class="digit-cell digit-cell-bottom">
-                <div class=letters>&nbsp;</div>
-                <div class=digit>&nbsp;</div>
-                <div class=letters>&nbsp;</div>
+                <div class="letters">&nbsp;</div>
+                <div class="digit">&nbsp;</div>
+                <div class="letters">&nbsp;</div>
             </div>
-            <div class="digit-cell digit-cell-mid digit-cell-bottom digit-cell-call" action=call>
-                <div class=letters>&nbsp;</div>
+            <div class="digit-cell digit-cell-mid digit-cell-bottom digit-cell-call" action="call">
+                <div class="letters">&nbsp;</div>
                 <div class="digit digit-call">
-                    <div class=phone-icon-answer>&nbsp;</div>
-                    <div class=call-button-text-out>Call</div>
+                    <div class="phone-icon-answer">&nbsp;</div>
+                    <div class="call-button-text-out">Call</div>
                 </div>
-                <div class=letters>&nbsp;</div>
+                <div class="letters">&nbsp;</div>
             </div>
-            <div class="digit-cell digit-cell-bottom" action=dialpad-delete>
-                <div class=digit-cell-delete>&nbsp;</div>
+            <div class="digit-cell digit-cell-bottom" action="dialpad-delete">
+                <div class="digit-cell-delete">&nbsp;</div>
             </div>
-            <div class=pubnub-clear></div>
-            <div id=pubnub-dialpad-footer>Your Number: 6711</div>
+            <div class="pubnub-clear"></div>
+            <div id="pubnub-dialpad-footer">Your Number: 6711</div>
         </div>
 
         <!-- CALL INBOUND/OUTBOUND -->
-        <div id=pubnub-call></div>
+        <div id="pubnub-call"></div>
 
         <!-- TEMPLATES -->
-        <script id=pubnub-dialpad-footer-template type=template>
+        <script id="pubnub-dialpad-footer-template" type="template">
             Your Number: {number}
         </script>
-        <script id=pubnub-call-template type=template>
-            <div class=pubnub-screen>
-                <div class=pubnub-call-header>
-                    <div class=pubnub-call-header-contact>{contact}</div>
-                    <div class=pubnub-call-header-detail>{detail}</div>
+        <script id="pubnub-call-template" type="template">
+            <div class="pubnub-screen">
+                <div class="pubnub-call-header">
+                    <div class="pubnub-call-header-contact">{contact}</div>
+                    <div class="pubnub-call-header-detail">{detail}</div>
                 </div>
-                <div class=pubnub-call-button-area>{buttons}</div>
+                <div class="pubnub-call-button-area">{buttons}</div>
             </div>
         </script>
-        <script id=pubnub-in-call-template type=template>
-            <div class="call-button decline" action=end>
-                <div class=phone-icon-decline></div>
-                <div class=call-button-text>Decline</div>
+        <script id="pubnub-in-call-template" type="template">
+            <div class="call-button decline" action="end">
+                <div class="phone-icon-decline"></div>
+                <div class="call-button-text">Decline</div>
             </div>
-            <div class="call-button answer" action=answer>
-                <div class=phone-icon-answer></div>
-                <div class=call-button-text>Answer</div>
+            <div class="call-button answer" action="answer">
+                <div class="phone-icon-answer"></div>
+                <div class="call-button-text">Answer</div>
             </div>
         </script>
-        <script id=pubnub-out-call-template type=template>
+        <script id="pubnub-out-call-template" type="template">
             <div class="call-button decline end" action=end>
                 <div class="phone-icon-decline end-icon"></div>
                 <div class="call-button-text end-text">End Call</div>
             </div>
         </script>
-        <script id=pubnub-fail-call-template type=template>
-            <div class="call-button answer" action=call>
-                <div class=phone-icon-answer></div>
-                <div class=call-button-text>Redail</div>
+        <script id="pubnub-fail-call-template" type="template">
+            <div class="call-button answer" action="call">
+                <div class="phone-icon-answer"></div>
+                <div class="call-button-text">Redial</div>
             </div>
-            <div class="call-button decline" action=end>
-                <div class=phone-icon-decline></div>
-                <div class=call-button-text>Cancel</div>
+            <div class="call-button decline" action="end">
+                <div class="phone-icon-decline"></div>
+                <div class="call-button-text">Cancel</div>
             </div>
         </script>
 
@@ -153,11 +148,11 @@
 
 
 <script>scrollTo(0,1);</script>
-<script src=http://cdn.pubnub.com/pubnub-3.1.min.js></script>
-<script src=js/microphone.js></script>
-<script src=js/animate.js></script>
-<script src=js/sound.js></script>
-<script src=js/phone.js></script>
-<script src=js/app.js></script>
+<script src="http://cdn.pubnub.com/pubnub-3.1.min.js"></script>
+<script src="js/microphone.js?1"></script>
+<script src="js/animate.js?1"></script>
+<script src="js/sound.js?1"></script>
+<script src="js/phone.js?9"></script>
+<script src="js/app.js?19"></script>
 </body>
 </html>

@@ -1,5 +1,5 @@
-
-/* Hey, let's be friends! http://twitter.com/pubnub */
+/* Hey, let's be friends! http://twitter.com/pubnub
+   Edits by JohnMHarrisJr, http://twitter.com/johnmharrisjr */
 
 (function(){
 
@@ -13,27 +13,18 @@ var p            = PUBNUB
 // CALL SIGNALLING via PUBNUB
 // -----------------------------------------------------------------------
 var my_phone_number = Math.floor(Math.random()*9999);
-console.log('establishing link....');
 
 phone.listen(my_phone_number);
 phone.ready(function(){
-    console.log('ready to make and receive calls!');
+    myphonenumber = my_phone_number;
 });
 
 phone.incoming(function(call){
     sounds.play('tone/ring-in');
     show_call_status({
         way     : 'in',
-        contact : format_phone_number(call.number) || ' ',
-        detail  : call.name
-    });
-
-    call.accept(function(call){
-        
-    });
-
-    call.decline(function(call){
-
+        contact : format_phone_number(call.data.mynumber) || ' ',
+        detail  : call.data.name
     });
 });
 
@@ -139,8 +130,10 @@ p.events.bind( 'dialpad-press-down', function(data) {
 // -----------------------------------------------------------------------
 p.events.bind( 'call-down', function(data) {
     phone.call({
-        name   : 'phone',
-        number : outbound_number.value
+        name   : 'Phone',
+        number : outbound_number.value,
+        mynumber : my_phone_number,
+        purpose : "call"
     });
     sounds.play('tone/ring-out');
     show_call_status({
@@ -153,6 +146,11 @@ p.events.bind( 'call-down', function(data) {
 // END BUTTON
 // -----------------------------------------------------------------------
 p.events.bind( 'end-up', function(data) {
+    phone.declinecall({
+        mynumber : my_phone_number,
+        purpose : 'declined'
+    });
+    calling_number = 0;
     sounds.stopAll();
     hide_screen(pubnub_call);
     show_screen(pubnub_dailpad);

@@ -1,4 +1,5 @@
-/* Hey, let's be friends! http://twitter.com/pubnub */
+/* Hey, let's be friends! http://twitter.com/pubnub
+   Edits by JohnMHarrisJr, http://twitter.com/johnmharrisjr */
 var phone = (function(){
 
 // -----------------------------------------------------------------------
@@ -10,6 +11,10 @@ var phone = {}
     subscribe_key : 'demo',
     ssl           : false
 });
+
+// BACKUP
+var myphonenumber = 0,
+calling_number = 0;
 
 // -----------------------------------------------------------------------
 // LISTEN FOR CALLS (INBOUDN)
@@ -23,7 +28,14 @@ phone.listen = function(number) {
         reconnect  : function(){ phone.onreconnect() },
         callback   : function(call) {
             call.event
-            phone.onincoming(call);
+            if(call.data.purpose == "call"){
+                phone.onincoming(call);
+            }else if(call.data.purpose == "declined" && call.data.mynumber == calling_number){
+                calling_number = 0;
+                sounds.stopAll();
+                hide_screen(pubnub_call);
+                show_screen(pubnub_dailpad);
+            }
         }
     });
 };
@@ -40,7 +52,30 @@ phone.call = function(args) {
         }
     });
 };
-
+// -----------------------------------------------------------------------
+// ACCEPT CALL
+// -----------------------------------------------------------------------
+phone.acceptcall = function(args) {
+    p.publish({
+        channel : 'pubnub-phone-' + args.number,
+        message : {
+            event : 'accepted',
+            data  : args
+        }
+    });
+};
+// -----------------------------------------------------------------------
+// DECLINE CALL
+// -----------------------------------------------------------------------
+phone.declinecall = function(args) {
+    p.publish({
+        channel : 'pubnub-phone-' + calling_number,
+        message : {
+            event : 'declined',
+            data  : args
+        }
+    });
+};
 // -----------------------------------------------------------------------
 // CREATE A CALL OBJECT
 // -----------------------------------------------------------------------
@@ -54,7 +89,15 @@ function call_in() {
     };
 
     call.disconnect = function() {
-        // .. TODO clean DISCONNECT HERE
+        /*
+        p.publish({
+            channel : 'pubnub-phone-' + args.number,
+            message : {
+                event : 'disconnect',
+                data  : args
+            }
+        });
+        */
     };
 
     return call;
